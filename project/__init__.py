@@ -7,9 +7,9 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 
 app.debug = True
-cors = CORS(app)
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost:5432/helpdesk'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
@@ -22,11 +22,13 @@ from project.models import User
 
 @app.route("/")
 def hello_world():
+    print('h')
     return "<p>Hello, Flask World!</p>"
 
 
 @app.route("/ticket", methods=['GET', 'POST'])
 def create_ticket():
+    print('Create a Ticket')
     if request.method == 'POST':
         u = User(body="shshsh", username="ssss")
         db.session.add(u)
