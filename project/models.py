@@ -1,7 +1,6 @@
-from project import db
+from project.db import db
 from dataclasses import dataclass
 from sqlalchemy import inspect
-
 
 @dataclass
 class User(db.Model):
