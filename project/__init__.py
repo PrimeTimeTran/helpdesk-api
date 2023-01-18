@@ -4,17 +4,21 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 app.config.from_object('config')
 
-from project.models import User
+from project.models import User, Ticket
 from project.db import db
+
+
+@app.route("/tickets", methods=['GET'])
+def tickets():
+  tickets = Ticket.query.all()
+  result_dict = [u.toDict() for u in tickets]
+  return jsonify(result_dict)
 
 @app.route("/ticket", methods=['GET', 'POST'])
 def create_ticket():
     if request.method == 'POST':
         data = request.get_json()
-
-        u = User(body=data['text'], username=data['bar'])
-        db.session.add(u)
+        ticket = Ticket(name=data['name'], email=data['email'], description=data['description'])
+        db.session.add(ticket)
         db.session.commit()
-        return jsonify(
-            u.toDict()
-        )
+        return jsonify(ticket.toDict())

@@ -10,4 +10,13 @@ class User(db.Model):
 
     def toDict(self):
       return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
-# db.create_all()
+
+@dataclass
+class Ticket(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text)
+    description = db.Column(db.Text)
+    email = db.Column(db.Text)
+
+    def toDict(self):
+      return {c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs}
