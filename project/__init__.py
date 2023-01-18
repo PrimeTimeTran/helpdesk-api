@@ -4,9 +4,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 app.config.from_object('config')
 
-from project.models import User, Ticket
+from project.models import Ticket
 from project.db import db
-
 
 @app.route("/tickets", methods=['GET'])
 def tickets():

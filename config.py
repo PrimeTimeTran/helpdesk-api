@@ -10,4 +10,5 @@ CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-logging.getLogger('flask_cors').level = logging.DEBUG
+# logging.getLogger('flask_cors').level = logging.DEBUG
+logging.basicConfig(level=logging.DEBUG)
