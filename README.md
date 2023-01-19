@@ -1,3 +1,6 @@
+# Helpdesk API
+
+![Demo](https://s3.gifyu.com/images/helpdeskdemo.gif)
 
 # Dependencies
 
