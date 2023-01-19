@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from sqlalchemy import inspect
 class Status(str, enum.Enum):
     new = 'new'
-    progress = 'progress'
+    progress = 'in progress'
     resolved = 'resolved'
     def _get_value(self, **kwargs) -> str:
         return self.value

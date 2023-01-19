@@ -13,6 +13,17 @@ def tickets():
   result_dict = [u.toDict() for u in tickets]
   return jsonify(result_dict)
 
+@app.route("/tickets/<id>", methods=['PATCH'])
+def update_ticket(id):
+  t = Ticket.query.get(id)
+  data = request.get_json()
+  t.name = data['name']
+  t.email = data['email']
+  t.status = data['status']
+  t.description = data['description']
+  db.session.commit()
+  return jsonify(t.toDict())
+
 @app.route("/ticket", methods=['GET', 'POST'])
 def create_ticket():
     if request.method == 'POST':
